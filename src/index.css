@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #120e24; /* deep midnight purple */
+  --color-primary-light: #1f1837;
+  --color-accent: #c084fc; /* neon purple */
+  --color-accent-light: #e879f9;
+  --color-neon-blue: #38bdf8;
+}
+
+:root {
+  background-color: theme('color.primary');
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #2b1853, #120e24 60%);
+  background-attachment: fixed;
+}
+
+.magic-gradient {
+  background: linear-gradient(135deg, theme('color.neon-blue'), theme('color.accent-light'));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+}
