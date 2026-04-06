@@ -1,8 +1,12 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoImg from '../assets/logo.png';
+import FloatingCalculator from './FloatingCalculator';
 
 export default function Layout() {
+    const location = useLocation();
+    const isGamePage = location.pathname.includes('/game/');
+
     return (
         <div className="flex flex-col min-h-screen w-full">
             <header className="w-full p-6 flex justify-between items-center max-w-5xl mx-auto">
@@ -30,6 +34,9 @@ export default function Layout() {
             <footer className="py-6 text-center text-slate-500 text-sm mt-8 border-t border-white/5 w-full">
                 <p>&copy; {new Date().getFullYear()} Magics OF Python. A fun math magic app.</p>
             </footer>
+
+            {/* Right side floating calculator conditionally rendered */}
+            {isGamePage && <FloatingCalculator />}
         </div>
     );
 }
