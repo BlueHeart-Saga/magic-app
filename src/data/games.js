@@ -7,9 +7,9 @@ export const games = [
     },
     {
         id: "age-trick",
-        title: "🎂 Guess My Age",
-        description: "A fun trick to guess your age. (Coming Soon)",
-        path: "#"
+        title: "🎂 Guess My Birthday",
+        description: "A fun trick to guess your exact birthday and year! (New)",
+        path: "/game/guess-my-birthday"
     },
     {
         id: "card-trick",

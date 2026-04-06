@@ -1,17 +1,21 @@
 import { Outlet, Link } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logoImg from '../assets/logo.png';
 
 export default function Layout() {
     return (
         <div className="flex flex-col min-h-screen w-full">
             <header className="w-full p-6 flex justify-between items-center max-w-5xl mx-auto">
-                <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     <motion.div
-                        animate={{ rotate: [0, 10, -10, 0] }}
-                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        <Sparkles className="w-8 h-8 text-purple-400" />
+                        <img
+                            src={logoImg}
+                            alt="Magics of Python Logo"
+                            className="w-12 h-12 object-contain drop-shadow-[0_0_15px_rgba(168,85,247,0.4)]"
+                        />
                     </motion.div>
                     <h1 className="text-2xl font-bold bg-clip-text text-transparent magic-gradient">
                         Magics OF Python
