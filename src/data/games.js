@@ -27,12 +27,14 @@ export const games = [
         id: "mind-read",
         title: "🧠 Mind Reading",
         description: "I will read your mind through the screen. (Coming Soon)",
-        path: "#"
+        path: "#",
+        isBlurred: true
     },
     {
         id: "invisible-dice",
         title: "🎲 Invisible Dice",
         description: "Roll an invisible dice, I'll tell you the score. (Coming Soon)",
-        path: "#"
+        path: "#",
+        isBlurred: true
     }
 ];

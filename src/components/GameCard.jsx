@@ -7,7 +7,7 @@ export default function GameCard({ game }) {
     return (
         <motion.div
             whileHover={isAvailable ? { scale: 1.05, y: -5 } : {}}
-            className={`relative rounded-2xl p-[1px] ${isAvailable ? 'bg-gradient-to-br from-purple-500 to-blue-500' : 'bg-slate-800'}`}
+            className={`relative rounded-2xl p-[1px] ${isAvailable ? 'bg-gradient-to-br from-purple-500 to-blue-500' : 'bg-slate-800'} ${game.isBlurred ? 'opacity-50 blur-[3px] select-none pointer-events-none' : ''}`}
         >
             <div className="bg-[#120e24] w-full h-full rounded-2xl p-6 flex flex-col gap-4 text-left">
                 <h3 className="text-xl font-bold text-slate-100">{game.title}</h3>
