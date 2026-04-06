@@ -12,9 +12,27 @@ export const games = [
         path: "/game/guess-my-birthday"
     },
     {
+        id: "find-name",
+        title: "🔤 Find Your Name",
+        description: "A magic spell to correctly spell out your name. (Coming Soon)",
+        path: "#"
+    },
+    {
         id: "card-trick",
         title: "🃏 Card Prediction",
         description: "Think of a card, any card. (Coming Soon)",
+        path: "#"
+    },
+    {
+        id: "mind-read",
+        title: "🧠 Mind Reading",
+        description: "I will read your mind through the screen. (Coming Soon)",
+        path: "#"
+    },
+    {
+        id: "invisible-dice",
+        title: "🎲 Invisible Dice",
+        description: "Roll an invisible dice, I'll tell you the score. (Coming Soon)",
         path: "#"
     }
 ];
