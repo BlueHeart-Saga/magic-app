@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator, X } from 'lucide-react';
+import { Calculator, X, Delete } from 'lucide-react';
 
 export default function FloatingCalculator() {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +11,12 @@ export default function FloatingCalculator() {
         if (val === 'C') {
             setDisplay('0');
             setEquation('');
+            return;
+        }
+
+        if (val === 'DEL') {
+            setDisplay((prev) => prev.length > 1 && prev !== 'Error' ? prev.slice(0, -1) : '0');
+            setEquation((prev) => prev.length > 1 ? prev.slice(0, -1) : '');
             return;
         }
 
@@ -37,6 +43,12 @@ export default function FloatingCalculator() {
             return;
         }
 
+        if (val === '.') {
+            setEquation((prev) => prev + '.');
+            setDisplay((prev) => (prev === 'Error' ? '.' : prev + '.'));
+            return;
+        }
+
         if (['+', '-', '*', '/'].includes(val)) {
             setEquation((prev) => prev + val);
             setDisplay(val);
@@ -52,10 +64,28 @@ export default function FloatingCalculator() {
     };
 
     const buttons = [
-        '7', '8', '9', '/',
-        '4', '5', '6', '*',
-        '1', '2', '3', '-',
-        'C', '0', '=', '+'
+        { id: 'C', class: 'bg-gradient-to-br from-red-500/20 to-orange-500/20 text-red-300 border-red-500/30 hover:from-red-500/40' },
+        { id: 'DEL', class: 'bg-gradient-to-br from-orange-500/20 to-yellow-500/20 text-orange-300 border-orange-500/30 hover:from-orange-500/40' },
+        { id: '.', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '/', class: 'bg-purple-600/40 text-purple-200 border-purple-500/40 hover:bg-purple-500/60' },
+
+        { id: '7', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '8', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '9', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '*', class: 'bg-purple-600/40 text-purple-200 border-purple-500/40 hover:bg-purple-500/60' },
+
+        { id: '4', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '5', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '6', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '-', class: 'bg-purple-600/40 text-purple-200 border-purple-500/40 hover:bg-purple-500/60' },
+
+        { id: '1', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '2', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '3', class: 'bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '+', class: 'bg-purple-600/40 text-purple-200 border-purple-500/40 hover:bg-purple-500/60' },
+
+        { id: '0', class: 'col-span-2 bg-white/5 text-slate-100 border-white/10 hover:bg-white/10' },
+        { id: '=', class: 'col-span-2 bg-gradient-to-br from-purple-500 to-blue-500 text-white border-purple-400/50 hover:brightness-110' },
     ];
 
     return (
@@ -82,8 +112,8 @@ export default function FloatingCalculator() {
                         </div>
 
                         <div className="p-5">
-                            <div className="bg-[#0b0814] rounded-2xl p-4 mb-5 border border-purple-500/30 text-right overflow-hidden shadow-inner">
-                                <div className="text-xs font-mono text-purple-400 h-4 break-all opacity-70 mb-1 tracking-widest">
+                            <div className="bg-[#0b0814] rounded-2xl p-4 mb-5 border border-purple-500/30 text-right overflow-hidden shadow-inner flex flex-col justify-end">
+                                <div className="text-xs font-mono text-purple-400 h-4 break-all opacity-70 mb-1 tracking-widest overflow-hidden">
                                     {equation || display}
                                 </div>
                                 <div className="text-3xl font-mono text-white tracking-wider mt-1 truncate">
@@ -94,18 +124,12 @@ export default function FloatingCalculator() {
                             <div className="grid grid-cols-4 gap-3">
                                 {buttons.map((btn) => (
                                     <motion.button
-                                        key={btn}
+                                        key={btn.id}
                                         whileTap={{ scale: 0.85 }}
-                                        onClick={() => handlePress(btn)}
-                                        className={`h-14 rounded-2xl text-xl font-bold flex items-center justify-center transition-all shadow-sm
-                      ${['+', '-', '*', '/', '='].includes(btn)
-                                                ? 'bg-gradient-to-br from-purple-600/40 to-blue-600/40 hover:from-purple-500/60 hover:to-blue-500/60 text-purple-200 border border-purple-500/40'
-                                                : btn === 'C'
-                                                    ? 'bg-gradient-to-br from-red-500/20 to-orange-500/20 hover:from-red-500/40 text-red-300 border border-red-500/30'
-                                                    : 'bg-white/5 hover:bg-white/10 text-slate-100 border border-white/10'
-                                            }`}
+                                        onClick={() => handlePress(btn.id)}
+                                        className={`h-14 rounded-2xl text-xl font-bold flex items-center justify-center transition-all shadow-sm border ${btn.class}`}
                                     >
-                                        {btn}
+                                        {btn.id === 'DEL' ? <Delete className="w-6 h-6" /> : btn.id}
                                     </motion.button>
                                 ))}
                             </div>
