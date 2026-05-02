@@ -20,8 +20,8 @@ export const games = [
     {
         id: "card-trick",
         title: "🃏 Card Prediction",
-        description: "Think of a card, any card. (Coming Soon)",
-        path: "#"
+        description: "Think of a card, any card. I will find it! (New)",
+        path: "/game/card-trick"
     },
     {
         id: "mind-read",
